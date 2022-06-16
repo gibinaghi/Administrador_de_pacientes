@@ -1,14 +1,24 @@
 import {useState, useEffect } from 'react';
 import Error from './Error';
 
-const Formulario = ({ pacientes, setPacientes }) => {
-    const [nombre, setNombre] = useState('');
+const Formulario = ({ pacientes, setPacientes, paciente }) => {
+    const [nombre, setNombre] = useState('');  //valor inicial del formulario, está vacio
     const [propietario, setPropietario] = useState('');
     const [email, setEmail] = useState('');
     const [fecha, setFecha] = useState('');
     const [sintomas, setSintomas] = useState('');
 
     const [error, setError] = useState(false);
+
+    useEffect(() => {
+        if(Object.keys(paciente).length > 0) {
+            setNombre(paciente.nombre);  //es el que está en memoria
+            setPropietario(paciente.propietario);
+            setEmail(paciente.email);
+            setFecha(paciente.fecha);
+            setSintomas(paciente.sintomas);
+        }
+    }, [paciente]);
 
     const generarId = () => {
             const random = Math.random().toString(36).substring(2, 15);
@@ -132,7 +142,7 @@ const Formulario = ({ pacientes, setPacientes }) => {
                     type="submit"
                     className="bg-indigo-600 w-full p-3 text-white uppercase font-bold
                     hover:bg-indigo-700 cursor-pointer transition-all"
-                    Value="Añadir paciente"
+                    Value={paciente.id ? 'Editar paciente' : 'Añadir paciente'}
                 />
             </form>
         </div>
