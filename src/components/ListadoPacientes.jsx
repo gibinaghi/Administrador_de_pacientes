@@ -1,6 +1,6 @@
 import Paciente from "./Paciente";
 
-const ListadoPacientes = ({pacientes, setPaciente}) => {  //tomo la función que viene de app.jsx y la leo
+const ListadoPacientes = ({pacientes, setPaciente, eliminarPaciente}) => {  //tomo la función que viene de app.jsx y la leo
     return (
         <div className="md:w-1/2 lg:w-3/5 md:h-screen overflow-y-scroll">
 
@@ -16,6 +16,7 @@ const ListadoPacientes = ({pacientes, setPaciente}) => {  //tomo la función que
                             key={paciente.id}
                             paciente={paciente}
                             setPaciente={setPaciente}
+                            eliminarPaciente={eliminarPaciente}
                         />)   
                     )} 
                 </>
